@@ -6,11 +6,19 @@
 /*   By: myoshika <myoshika@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:13 by myoshika          #+#    #+#             */
-/*   Updated: 2022/07/20 17:31:46 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/07/31 18:07:47 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != (char)c)
+		if (*s++ == '\0')
+			return (NULL);
+	return ((char *)s);
+}
 
 size_t	ft_strlen(const char *s)
 {
@@ -35,3 +43,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	ft_strlcpy(dst, src, dstsize - dst_len);
 	return (dst_len + ft_strlen(src));
 }
+
