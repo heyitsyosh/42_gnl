@@ -6,13 +6,13 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:45 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 00:46:03 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/02 04:49:59 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*read_till_nl_or_eof(int fd, char *buf, char *saved)
+static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
 {
 	ssize_t		read_status;
 	char		*line;
@@ -29,12 +29,12 @@ static char	*read_till_nl_or_eof(int fd, char *buf, char *saved)
 		else
 		{
 			buf[read_status] = '\0';
-			line = ft_strjoin_with_free(line, buf, 1);
+			line = ft_strjoin_with_free(line, buf, FREE_FIRST_PARAM);
 		}
 	}
-	if (line && saved && ft_strlen(saved) > 0)
-		line = ft_strjoin_with_free(saved, line, 2);
-	ft_free(&saved);
+	if (line && saved && *saved && *saved[0] != '\0')
+		line = ft_strjoin_with_free(*saved, line, FREE_SECOND_PARAM);
+	ft_free(saved);
 	return (line);
 }
 
@@ -42,21 +42,25 @@ char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buf;
+	char		*ptr_to_nl;
 	static char	*saved[256];
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 256)
+	if (BUFFER_SIZE <= 0 || fd < 0 || fd > 255)
 		return (NULL);
-	buf = (char *)malloc(BUFFER_SIZE + 1);
+	buf = (char *)malloc(BUFFER_SIZE + 1UL);
 	if (!buf)
 		return (NULL);
-	line = read_till_nl_or_eof(fd, buf, saved[fd]);
-	if (line && ft_strchr(line, '\n'))
+	line = read_till_nl_or_eof(fd, buf, &saved[fd]);
+	ptr_to_nl = NULL;
+	if (line)
+		ptr_to_nl = ft_strchr(line, '\n');
+	if (ptr_to_nl)
 	{
-		saved[fd] = ft_strjoin_with_free(ft_strchr(line, '\n') + 1, "", 0);
-		line[ft_strchr(line, '\n') - line + 1] = '\0';
-		line = ft_strjoin_with_free(line, "", 1);
+		saved[fd] = ft_strjoin_with_free(ptr_to_nl + 1, "", FREE_NONE);
+		line[ptr_to_nl - line + 1] = '\0';
+		line = ft_strjoin_with_free(line, "", FREE_FIRST_PARAM);
 	}
-	else if (line && ft_strlen(line) < 1)
+	else if (line && line[0] == '\0')
 		ft_free(&line);
 	ft_free(&buf);
 	return (line);
