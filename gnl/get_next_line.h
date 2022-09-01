@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:15 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/01 23:36:16 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/02 03:54:51 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif
+
+# define FREE_NONE 0
+# define FREE_FIRST_PARAM 1
+# define FREE_SECOND_PARAM 2
 
 void	ft_free(char **pointer);
 size_t	ft_strlen(const char *s);
