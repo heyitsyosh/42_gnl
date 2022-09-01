@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/20 16:49:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 00:08:45 by myoshika         ###   ########.fr       */
+/*   Created: 2022/07/23 16:26:45 by myoshika          #+#    #+#             */
+/*   Updated: 2022/09/02 00:46:03 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static char	*read_till_nl_or_eof(int fd, char *buf, char *saved)
 		if (read_status < 0)
 			ft_free(&line);
 		else
+		{
 			buf[read_status] = '\0';
-		line = ft_strjoin_with_free(line, buf, 1);
+			line = ft_strjoin_with_free(line, buf, 1);
+		}
 	}
 	if (line && saved && ft_strlen(saved) > 0)
 		line = ft_strjoin_with_free(saved, line, 2);
@@ -59,8 +61,3 @@ char	*get_next_line(int fd)
 	ft_free(&buf);
 	return (line);
 }
-
-
-//do i need to free if a static char is assigned malloc
-//can i assign a retrun value of a function that frees the same variable that its assigning to?
-//do i need to free anything else? (when returning null from buf malloc failure)
