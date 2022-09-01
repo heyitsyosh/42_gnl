@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/01 22:18:09 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:36:14 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*get_next_line(int fd)
 	if (line && ft_strchr(line, '\n'))
 	{
 		saved[fd] = ft_strjoin_with_free(ft_strchr(line, '\n') + 1, "", 0);
-		line[line - ft_strchr(line, '\n') + 1] = '\0';
+		line[ft_strchr(line, '\n') - line + 1] = '\0';
 		line = ft_strjoin_with_free(line, "", 1);
 	}
 	else if (line && ft_strlen(line) < 1)
