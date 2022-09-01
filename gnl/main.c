@@ -10,10 +10,9 @@
 
 int main()
 {
-	char	buf[4 + 1];
-	int fd = open("test.txt", O_RDONLY);
+	int fd = open("42_with_nl", O_RDONLY);
 	printf("%s", get_next_line(fd));
-	printf("%d", get_next_line(fd) == NULL);
+	//printf("%s", get_next_line(fd));
 	//printf("%d", NULL == get_next_line(fd));
 	// ssize_t read_status = read(fd, buf, BUFFER_SIZE);
 	// printf("[%d][%s]", read_status, buf);
