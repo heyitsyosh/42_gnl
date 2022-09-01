@@ -6,16 +6,16 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:13 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/01 21:31:23 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/01 22:18:38 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	ft_free(char *pointer)
+void	ft_free(char **pointer)
 {
-	free(pointer);
-	pointer = NULL;
+	free(*pointer);
+	*pointer = NULL;
 }
 
 char	*ft_strchr(const char *s, int c)
@@ -68,8 +68,8 @@ char	*ft_strjoin_with_free(char *s1, char *s2, int to_free)
 		ft_strlcpy(joined + s1_len, s2, s2_len + 1);
 	}
 	if (to_free == 1)
-		ft_free(s1);
+		ft_free(&s1);
 	if (to_free == 2)
-		ft_free(s2);
+		ft_free(&s2);
 	return (joined);
 }
