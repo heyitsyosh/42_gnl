@@ -6,11 +6,11 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:45 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 04:49:59 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:26:26 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
 {
@@ -58,7 +58,6 @@ char	*get_next_line(int fd)
 	{
 		saved[fd] = ft_strjoin_with_free(ptr_to_nl + 1, "", FREE_NONE);
 		line[ptr_to_nl - line + 1] = '\0';
-		line = ft_strjoin_with_free(line, "", FREE_FIRST_PARAM);
 	}
 	else if (line && line[0] == '\0')
 		ft_free(&line);

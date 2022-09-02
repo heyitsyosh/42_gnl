@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 04:32:57 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/02 19:12:10 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
 	line = (char *)malloc(1);
 	if (line)
 		*line = '\0';
+	if (line && saved && *saved && (*saved)[0] != '\0')
+		line = ft_strjoin_with_free(*saved, line, FREE_SECOND_PARAM);
 	read_status = 1;
 	while (line && !ft_strchr(line, '\n') && read_status > 0)
 	{
@@ -32,8 +34,6 @@ static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
 			line = ft_strjoin_with_free(line, buf, FREE_FIRST_PARAM);
 		}
 	}
-	if (line && saved && *saved && *saved[0] != '\0')
-		line = ft_strjoin_with_free(*saved, line, FREE_SECOND_PARAM);
 	ft_free(saved);
 	return (line);
 }
@@ -58,7 +58,6 @@ char	*get_next_line(int fd)
 	{
 		saved[fd] = ft_strjoin_with_free(ptr_to_nl + 1, "", FREE_NONE);
 		line[ptr_to_nl - line + 1] = '\0';
-		line = ft_strjoin_with_free(line, "", FREE_FIRST_PARAM);
 	}
 	else if (line && line[0] == '\0')
 		ft_free(&line);
