@@ -6,15 +6,16 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:15 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/04 07:38:49 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/04 08:31:45 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <fcntl.h>
+# include <sts/stat.h>
 # include <sys/types.h>
-# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -26,7 +27,7 @@
 # define FREE_FIRST_PARAM 1
 # define FREE_SECOND_PARAM 2
 
-void	ft_free(char **pointer);
+void	ft_safe_free(char **pointer);
 size_t	ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin_with_free(char *s1, char *s2, int to_free);

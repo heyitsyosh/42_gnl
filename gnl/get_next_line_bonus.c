@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:45 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/04 08:04:51 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/04 08:31:18 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
 	{
 		read_status = read(fd, buf, BUFFER_SIZE);
 		if (read_status < 0)
-			ft_free(&line);
+			ft_safe_free(&line);
 		else
 		{
 			buf[read_status] = '\0';
 			line = ft_strjoin_with_free(line, buf, FREE_FIRST_PARAM);
 		}
 	}
-	ft_free(saved);
+	ft_safe_free(saved);
 	return (line);
 }
 
@@ -43,9 +43,9 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buf;
 	char		*ptr_to_nl;
-	static char	*saved[OPEN_MAX + 1UL];
+	static char	*saved[INT_MAX + 1UL];
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > OPEN_MAX)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	buf = (char *)malloc(BUFFER_SIZE + 1UL);
 	if (!buf)
@@ -60,7 +60,7 @@ char	*get_next_line(int fd)
 		line[ptr_to_nl - line + 1] = '\0';
 	}
 	else if (line && line[0] == '\0')
-		ft_free(&line);
-	ft_free(&buf);
+		ft_safe_free(&line);
+	ft_safe_free(&buf);
 	return (line);
 }
