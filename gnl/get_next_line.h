@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:15 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 03:54:51 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/04 07:38:49 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # include <sys/types.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 

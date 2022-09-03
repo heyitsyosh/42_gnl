@@ -6,7 +6,7 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:42 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/02 04:51:05 by myoshika         ###   ########.fr       */
+/*   Updated: 2022/09/04 07:38:21 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include <sys/types.h>
+# include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
 
