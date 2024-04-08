@@ -6,10 +6,11 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:39 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/04 08:29:17 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:19:08 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h> //malloc, free
 #include "get_next_line_bonus.h"
 
 void	ft_safe_free(char **pointer)

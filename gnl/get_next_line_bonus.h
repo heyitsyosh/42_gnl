@@ -6,21 +6,20 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:26:42 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/04 08:31:49 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:18:32 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <fcntl.h>
-# include <sts/stat.h>
-# include <sys/types.h>
-# include <stdlib.h>
-# include <unistd.h>
+# include <stddef.h> //size_t
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
+# elif BUFFER_SIZE < 1
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 1
 # endif
 
 # define FREE_NONE 0

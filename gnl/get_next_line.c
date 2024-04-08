@@ -6,10 +6,13 @@
 /*   By: myoshika <myoshika@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:49:10 by myoshika          #+#    #+#             */
-/*   Updated: 2022/09/04 08:31:32 by myoshika         ###   ########.fr       */
+/*   Updated: 2024/04/08 11:18:47 by myoshika         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h> //read
+#include <stdlib.h> //malloc
+#include <limits.h> //INT_MAX
 #include "get_next_line.h"
 
 static char	*read_till_nl_or_eof(int fd, char *buf, char **saved)
@@ -43,9 +46,9 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buf;
 	char		*ptr_to_nl;
-	static char	*saved[INT_MAX + 1UL];
+	static char	*saved[256];
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (fd < 0 || 256 <= fd)
 		return (NULL);
 	buf = (char *)malloc(BUFFER_SIZE + 1UL);
 	if (!buf)
