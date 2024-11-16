@@ -21,7 +21,7 @@ Make sure to include `get_next_line.h` appropriately in your source code.
 Set `BUFFER_SIZE` to any number at compilation with `-D BUFFER_SIZE=<size>`.
 
 A sample `main.c` is included in this repository.  
-Use the compilation example given below to see a demonstration of get_next_line.
+Use the compilation example below to see a demonstration of get_next_line.
 ```Java
 gcc -D BUFFER_SIZE=42 main.c getnext_line.c get_next_line_utils.c -o fileprinter
 ```
